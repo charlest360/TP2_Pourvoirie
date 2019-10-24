@@ -14,7 +14,6 @@ public class ChaletTest {
 		//Act
 		
 		
-		
 		//Assert
 		assertEquals(0,0);		
 	}
