@@ -1,4 +1,4 @@
-package implementation.sejour;
+package implementation.forfait;
 
 public class SejourTest {
 
