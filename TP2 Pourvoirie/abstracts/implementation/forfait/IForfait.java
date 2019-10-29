@@ -1,5 +1,6 @@
 package implementation.forfait;
 
-public class IForfait {
-
+public interface IForfait {
+	public String getInfosForfait();
+	public float getPrixForfait();
 }
