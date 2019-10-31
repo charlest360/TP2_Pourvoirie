@@ -1,9 +1,9 @@
 package implementation.forfait;
 
 import implementation.chalet.IChalet;
-import implementation.chalet.NegativeNumberOfOccupantsException;
+import implementation.chalet.ZeroOrUnderNumberOfOccupantsException;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
-import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException;
+import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
 
 public class Forfait {
 	
@@ -22,23 +22,25 @@ public class Forfait {
 	
 	
 	private void setUpNbOfOccupants(int nbOfOccupants) {
-		if (nbOfOccupants >= 0) {
-			this.nbOfOccupants = 0;
+		if (nbOfOccupants >0) {
+			this.nbOfOccupants = nbOfOccupants;
 		}
 		else {
-			throw new NegativeNumberOfOccupantsException();
+			throw new ZeroOrUnderNumberOfOccupantsException();
 		}
-		
 	}
 
+	public int getNumberOfOccupants() {
+		return this.nbOfOccupants;
+	}
 
-
+	
 	private void setUpChalet(IChalet chalet, int nbOfOccupants) {
 		if (nbOfOccupants <= chalet.getMaximumOfOccupants() ) {
 			this.chalet = chalet;
 		}
 		else {
-			throw new NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException();
+			throw new NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException();
 		}
 	}
 
@@ -53,7 +55,12 @@ public class Forfait {
 		}
 	}
 	
+	public int getNbDeJours() {
+		return this.nbDeJours;
+	}
+	
 	public float getPrixTotal() {
 		return this.chalet.getPrixParNuit()*this.nbDeJours;
 	}
+	
 }
