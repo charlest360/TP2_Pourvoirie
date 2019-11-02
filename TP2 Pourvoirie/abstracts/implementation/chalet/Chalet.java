@@ -14,6 +14,6 @@ public abstract class Chalet implements IChalet {
 	
 	
 	public String getInfosChalet() {
-		return "Coût unitaire : "+this.getInfosChalet();
+		return this.getInfosChalet();
 	}
 }

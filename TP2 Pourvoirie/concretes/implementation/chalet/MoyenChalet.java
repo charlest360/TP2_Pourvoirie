@@ -23,6 +23,6 @@ public class MoyenChalet extends Chalet {
 	}
 	
 	public String getNbOccupant() {
-		return Integer.toString(MAXIMUM_OF_OCCUPANTS);
+		return "Chalet de six personnes au coût de "+Integer.toString(MAXIMUM_OF_OCCUPANTS)+" $";
 	}
 }

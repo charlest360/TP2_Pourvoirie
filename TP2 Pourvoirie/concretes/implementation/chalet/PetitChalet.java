@@ -23,6 +23,6 @@ public class PetitChalet extends Chalet {
 	}
 	
 	public String getNbOccupant() {
-		return Integer.toString(MAXIMUM_OF_OCCUPANTS);
+		return "Chalet de quatre personnes au coût de "+Integer.toString(MAXIMUM_OF_OCCUPANTS)+" $";
 	}
 }
