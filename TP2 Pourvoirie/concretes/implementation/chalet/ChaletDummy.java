@@ -14,4 +14,10 @@ public class ChaletDummy implements IChalet{
 		return 100;
 	}
 
+	@Override
+	public String getInfosChalet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

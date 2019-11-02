@@ -1,5 +1,5 @@
 package implementation.transport;
 
-public class Temp {
+public class Bateau extends Transport {
 
 }

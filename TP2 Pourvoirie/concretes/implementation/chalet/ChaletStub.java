@@ -17,4 +17,10 @@ public class ChaletStub implements IChalet {
 		return MAX_NB_OF_OCCUPANTS;
 	}
 
+	@Override
+	public String getInfosChalet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

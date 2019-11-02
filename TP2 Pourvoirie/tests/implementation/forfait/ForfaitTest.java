@@ -12,6 +12,8 @@ import implementation.chalet.IChalet;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
 import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
 import implementation.chalet.ZeroOrUnderNumberOfOccupantsException;
+import implementation.transport.ITransport;
+import implementation.transport.TransportDummy;
 
 
 
@@ -22,12 +24,12 @@ public class ForfaitTest {
 	final int ANY_NUMBER_OF_DAYS = 5;
 	final IChalet ANY_CHALET = new ChaletDummy();
 	final IChalet ANY_FUNCTIONNAL_CHALET = new ChaletStub();
-	
+	final ITransport ANY_TRANSPORT = new TransportDummy();
 	private Forfait anyForfait;
 	
 	@Before
 	public void setUpAnyForfait() {
-		anyForfait = new Forfait(ANY_FUNCTIONNAL_CHALET, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_OCCUPANTS);
+		anyForfait = new Forfait(ANY_FUNCTIONNAL_CHALET,ANY_TRANSPORT,ANY_TRANSPORT, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_OCCUPANTS);
 	}
 	
 	@Test 
@@ -36,7 +38,7 @@ public class ForfaitTest {
 		final IChalet CHALET = new ChaletStub();
 		final int VALID_NB_OF_OCCUPANTS = CHALET.getMaximumOfOccupants() -1;
 		
-		Forfait forfait = new Forfait (CHALET,ANY_NUMBER_OF_DAYS,VALID_NB_OF_OCCUPANTS);
+		Forfait forfait = new Forfait (CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ANY_NUMBER_OF_DAYS,VALID_NB_OF_OCCUPANTS);
 		
 		//Act
 		final int ACTUAL_NUMBER_OF_OCCUPANTS = forfait.getNumberOfOccupants();
@@ -51,7 +53,7 @@ public class ForfaitTest {
 		final IChalet CHALET = new ChaletStub();
 		final int MAXIMUM_NB_OF_OCCUPANT = CHALET.getMaximumOfOccupants();
 		
-		Forfait forfait = new Forfait (CHALET,ANY_NUMBER_OF_DAYS,MAXIMUM_NB_OF_OCCUPANT);
+		Forfait forfait = new Forfait (CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ANY_NUMBER_OF_DAYS,MAXIMUM_NB_OF_OCCUPANT);
 		
 		//Act
 		final int ACTUAL_NUMBER_OF_OCCUPANTS = forfait.getNumberOfOccupants();
@@ -66,7 +68,8 @@ public class ForfaitTest {
 		final IChalet CHALET = new ChaletStub();
 		final int INVALID_NB_OF_OCCUPANTS = CHALET.getMaximumOfOccupants()+1;
 		//Act
-		Forfait anyForfait = new Forfait (CHALET,ANY_NUMBER_OF_DAYS,INVALID_NB_OF_OCCUPANTS);
+		@SuppressWarnings("unused")
+		Forfait anyForfait = new Forfait (CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ANY_NUMBER_OF_DAYS,INVALID_NB_OF_OCCUPANTS);
 	}
 	
 	@Test (expected = ZeroOrUnderNumberOfOccupantsException.class)	
@@ -74,7 +77,8 @@ public class ForfaitTest {
 		//Arrange
 		final int ZERO_OCCUPANTS = 0;
 		//Act
-		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_NUMBER_OF_DAYS,ZERO_OCCUPANTS);
+		@SuppressWarnings("unused")
+		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ANY_NUMBER_OF_DAYS,ZERO_OCCUPANTS);
 	}
 	
 	@Test (expected = ZeroOrUnderNumberOfOccupantsException.class)	
@@ -82,7 +86,8 @@ public class ForfaitTest {
 		//Arrange
 		final int NEGATIVE_NB_OF_OCCUPANTS = -1;
 		//Act
-		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_NUMBER_OF_DAYS,NEGATIVE_NB_OF_OCCUPANTS);
+		@SuppressWarnings("unused")
+		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ANY_NUMBER_OF_DAYS,NEGATIVE_NB_OF_OCCUPANTS);
 	}
 	
 	@Test 
@@ -99,7 +104,8 @@ public class ForfaitTest {
 		//Arrange
 		final int ZERO_NB_OF_DAYS = 0;
 		//Act
-		Forfait anyForfait = new Forfait (ANY_CHALET,ZERO_NB_OF_DAYS,ANY_NUMBER_OF_OCCUPANTS);
+		@SuppressWarnings("unused")
+		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_TRANSPORT,ANY_TRANSPORT,ZERO_NB_OF_DAYS,ANY_NUMBER_OF_OCCUPANTS);
 		
 	}
 	
@@ -108,7 +114,8 @@ public class ForfaitTest {
 		//Arrange
 		final int NEGATIVE_NB_OF_DAYS = -1;
 		//Act
-		Forfait anyForfait = new Forfait (ANY_CHALET,NEGATIVE_NB_OF_DAYS,ANY_NUMBER_OF_OCCUPANTS);
+		@SuppressWarnings("unused")
+		Forfait anyForfait = new Forfait (ANY_CHALET,ANY_TRANSPORT,ANY_TRANSPORT,NEGATIVE_NB_OF_DAYS,ANY_NUMBER_OF_OCCUPANTS);
 		
 	}
 	
