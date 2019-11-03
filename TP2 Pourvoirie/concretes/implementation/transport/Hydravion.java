@@ -2,7 +2,7 @@ package implementation.transport;
 
 public class Hydravion extends Transport{
 	
-	final private float PRIX_TRANSPORT =  150f;
+	final private float PRIX_TRANSPORT =  80f;
 	
 	public Hydravion () {
 		
@@ -15,7 +15,7 @@ public class Hydravion extends Transport{
 	
 	@Override
 	public String getInfosTransport() {
-		return Float.toString(PRIX_TRANSPORT);
+		return "Transport par hydravion au coût de "+Float.toString(PRIX_TRANSPORT)+" $";
 	}
 
 }

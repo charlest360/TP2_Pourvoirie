@@ -14,6 +14,6 @@ public abstract class Transport implements ITransport {
 	
 	
 	public String getInfosTransport() {
-		return "Coût unitaire : "+this.getInfosTransport();
+		return this.getInfosTransport();
 	}
 }

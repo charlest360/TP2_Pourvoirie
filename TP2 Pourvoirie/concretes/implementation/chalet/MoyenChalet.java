@@ -17,12 +17,4 @@ public class MoyenChalet extends Chalet {
 		return MAXIMUM_OF_OCCUPANTS;
 	}
 	
-	@Override
-	public String getInfosChalet() {
-		return Float.toString(PRIX_PAR_NUIT);
-	}
-	
-	public String getNbOccupant() {
-		return Integer.toString(MAXIMUM_OF_OCCUPANTS);
-	}
 }
