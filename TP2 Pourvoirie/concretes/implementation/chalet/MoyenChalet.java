@@ -2,8 +2,8 @@ package implementation.chalet;
 
 public class MoyenChalet extends Chalet {
 	
-	final private float PRIX_PAR_NUIT =  200f;
-	final private int MAXIMUM_OF_OCCUPANTS = 6; 
+	final static float PRIX_PAR_NUIT =  200f;
+	final static int MAXIMUM_OF_OCCUPANTS = 6; 
 	
 	public MoyenChalet () {
 		
@@ -14,7 +14,7 @@ public class MoyenChalet extends Chalet {
 	}
 	
 	public int getMaximumOfOccupants() {
-		return this.MAXIMUM_OF_OCCUPANTS;
+		return MAXIMUM_OF_OCCUPANTS;
 	}
 	
 }

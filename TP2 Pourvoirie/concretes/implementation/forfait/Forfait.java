@@ -1,12 +1,13 @@
 package implementation.forfait;
 
+
 import implementation.chalet.IChalet;
 import implementation.transport.ITransport;
 import implementation.repas.RepasSouper;
 import implementation.forfait.IForfait;
 import implementation.chalet.NegativeNumberOfOccupantsException;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
-import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException;
+import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
 
 public class Forfait implements IForfait{
 	
@@ -27,19 +28,23 @@ public class Forfait implements IForfait{
 		setUpTransportAllez(transportAllez);
 		setUpTransportRetour(transportRetour);
 		setUpRepas(repas);
+
 	}
 	
 	
 	
 	private void setUpNbOfOccupants(int nbOfOccupants) {
-		if (nbOfOccupants >= 0) {
-			this.nbOfOccupants = 0;
+		if (nbOfOccupants >0) {
+			this.nbOfOccupants = nbOfOccupants;
 		}
 		else {
-			throw new NegativeNumberOfOccupantsException();
+			throw new ZeroOrUnderNumberOfOccupantsException();
 		}
-		
 	}
+	public int getNumberOfOccupants() {
+		return this.nbOfOccupants;
+	}
+
 	
 	private void setUpRepas(RepasSouper repas) {
 		this.repas = repas;
@@ -60,7 +65,7 @@ public class Forfait implements IForfait{
 			this.chalet = chalet;
 		}
 		else {
-			throw new NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException();
+			throw new NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException();
 		}
 	}
 
@@ -75,11 +80,13 @@ public class Forfait implements IForfait{
 		}
 	}
 	
+
 	private float getPrixTotal() {
 		return this.chalet.getPrixParNuit()*this.nbDeJours;
 	}
 	
 	private String getNbOccupant() {
+
 		return Integer.toString(nbOfOccupants);
 	}
 	
@@ -87,12 +94,14 @@ public class Forfait implements IForfait{
 		return "Le nombre d'occupants est : "+this.getNbOccupant();
 	}
 	
+
 	private String getNbDeJours() {
 		return Integer.toString(nbDeJours);
 	}
 	
 	private String getInfoNbDeJours() {
-		return "Le nombre jours réservés est : "+this.getNbDeJours();
+
+		return "Le nombre jours rÃ©servÃ©s est : "+this.getNbDeJours();
 	}
 	
 	public String getInfosChalet() {
@@ -102,7 +111,7 @@ public class Forfait implements IForfait{
 	private float getCoutTransportAllezEtRetour() {
 		return this.nbOfOccupants*(this.transportAllez.getPrixTransport()+this.transportRetour.getPrixTransport());
 	}
-	
+
 	private float getPrixSouperTotale() {
 		return this.repas.getPrixSouper()*this.nbDeJours;
 	}
@@ -110,5 +119,6 @@ public class Forfait implements IForfait{
 	public Float calculateCost() {
 		return Forfait.cost;
 	}
+
 }
 
