@@ -17,12 +17,4 @@ public class MoyenChalet extends Chalet {
 		return this.MAXIMUM_OF_OCCUPANTS;
 	}
 	
-	@Override
-	public String getInfosChalet() {
-		return Float.toString(PRIX_PAR_NUIT);
-	}
-	
-	public String getNbOccupant() {
-		return "Chalet de six personnes au coût de "+Integer.toString(MAXIMUM_OF_OCCUPANTS)+" $";
-	}
 }

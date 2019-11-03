@@ -1,5 +1,7 @@
 package implementation.repas;
 
-public class RepasDéjeunerDiner {
+import implementation.forfait.ForfaitOption;
+
+public class RepasDéjeunerDiner extends ForfaitOption {
 
 }

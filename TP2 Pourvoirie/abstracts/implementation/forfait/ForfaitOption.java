@@ -1,5 +1,5 @@
 package implementation.forfait;
 
-public class ForfaitOption {
+public abstract class ForfaitOption {
 
 }
