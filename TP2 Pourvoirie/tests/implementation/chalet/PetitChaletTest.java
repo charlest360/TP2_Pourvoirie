@@ -25,11 +25,5 @@ public class PetitChaletTest {
 		assertEquals(PetitChalet.MAXIMUM_OF_OCCUPANTS,ANY_PETIT_CHALET.getMaximumOfOccupants());
 	}
 	
-	@Test 
-	public void WHEN_callingGetInfosChaletOnPetitChalet_THEN_itReturnsTheRightPrixParNuitToString() {		
-		//Assert 
-		final String EXPECTED_PRIX_PAR_NUIT = Float.toString(PetitChalet.PRIX_PAR_NUIT);
-		
-		assertEquals(EXPECTED_PRIX_PAR_NUIT,ANY_PETIT_CHALET.getInfosChalet());
-	}
+	
 }

@@ -6,12 +6,6 @@ public abstract class Chalet implements IChalet {
 		
 	}
 	
-	public float getPrixParNuit() {
-		
-		return this.getPrixParNuit();
-	
-	}
-	
 	public String getMaximumOfOccupantsString() {
 		return "Chalet de"+Integer.toString(this.getMaximumOfOccupants())+"personnes.";
 	}

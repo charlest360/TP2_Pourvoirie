@@ -18,13 +18,7 @@ public class GrandChalet extends Chalet {
 	}
 	
 
-	@Override
-	public String getInfosChalet() {
-		return "Chalet de dix personnes au coût de "+Float.toString(PRIX_PAR_NUIT)+" $";
-	}
+
 	
-	public String getNbOccupant() {
-		return Integer.toString(MAXIMUM_OF_OCCUPANTS);
-	}
 
 }

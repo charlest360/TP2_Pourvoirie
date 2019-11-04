@@ -2,7 +2,7 @@ package implementation.chalet;
 
 public class ChaletDummy implements IChalet{
 
-	
+	public static String InfosChalets ="Oui";
 	
 	@Override
 	public float getPrixParNuit() {
@@ -15,9 +15,17 @@ public class ChaletDummy implements IChalet{
 	}
 
 	@Override
-	public String getInfosChalet() {
+	public String getMaximumOfOccupantsString() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String getPrixParNuitString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

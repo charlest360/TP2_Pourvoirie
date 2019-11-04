@@ -5,4 +5,5 @@ public interface IChalet {
 	public int getMaximumOfOccupants();
 	public String getMaximumOfOccupantsString();
 	public String getPrixParNuitString();
+	
 }

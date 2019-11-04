@@ -1,6 +1,7 @@
 package implementation.forfait;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,10 @@ import implementation.chalet.IChalet;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
 import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
 import implementation.chalet.ZeroOrUnderNumberOfOccupantsException;
+import implementation.repas.RepasSouper;
 import implementation.transport.ITransport;
 import implementation.transport.TransportDummy;
+import implementation.transport.TransportStub;
 
 
 
@@ -22,6 +25,7 @@ public class ForfaitTest {
 	
 	final int ANY_NUMBER_OF_OCCUPANTS = 1;
 	final int ANY_NUMBER_OF_DAYS = 5;
+	final RepasSouper ANY_REPAS_SOUPER = new RepasSouper();
 	final IChalet ANY_CHALET = new ChaletDummy();
 	final IChalet ANY_FUNCTIONNAL_CHALET = new ChaletStub();
 	final ITransport ANY_TRANSPORT = new TransportDummy();
@@ -29,7 +33,7 @@ public class ForfaitTest {
 	
 	@Before
 	public void setUpAnyForfait() {
-		anyForfait = new Forfait(ANY_FUNCTIONNAL_CHALET,ANY_TRANSPORT,ANY_TRANSPORT, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_OCCUPANTS);
+		anyForfait = new Forfait(ANY_CHALET,ANY_TRANSPORT,ANY_TRANSPORT, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_OCCUPANTS);
 	}
 	
 	@Test 
@@ -120,14 +124,78 @@ public class ForfaitTest {
 	}
 	
 	@Test 
-	public void WHEN_creatingForfait_THEN_callingGetPrixTotalReturnsPrixParNuitMultipliedByNumberOfNights() {		
+	public void WHEN_creatingForfait_THEN_callingGetPrixDeBaseReturnsPrixParNuitMultipliedByNumberOfNights() {		
 		//Act
-		final float ACTUAL_PRIX_TOTAL = anyForfait.getPrixTotal();
-		final float EXPECTED_PRIX_TOTAL = ANY_FUNCTIONNAL_CHALET.getPrixParNuit()*ANY_NUMBER_OF_DAYS ;
+		final float ACTUAL_PRIX_DE_BASE = anyForfait.getPrixDeBase();
+		final float EXPECTED_PRIX_DE_BASE = ANY_FUNCTIONNAL_CHALET.getPrixParNuit()*ANY_NUMBER_OF_DAYS ;
 		
 		
 		//Assert 
-		assertEquals(EXPECTED_PRIX_TOTAL,ACTUAL_PRIX_TOTAL,0.001);
+		assertEquals(EXPECTED_PRIX_DE_BASE,ACTUAL_PRIX_DE_BASE,0.001);
+	}
+	
+	@Test 
+	public void WHEN_creatingForfait_THEN_callingGetInfoNbOccupantReturnsTheActualInfosInfoNbOccupant() {		
+		//Act
+		final String ACTUAL_INFOS_OCCUPANTS = anyForfait.getInfoNbOccupant();
+		final String EXPECTED_INFOS_OCCUPANTS = "Le nombre d'occupants est : "+Integer.toString(anyForfait.getNumberOfOccupants());
+		
+		
+		//Assert 
+		assertEquals(EXPECTED_INFOS_OCCUPANTS,ACTUAL_INFOS_OCCUPANTS);
+	}
+	
+	@Test 
+	public void WHEN_creatingForfait_THEN_callingGetInfosChaletReturnsTheActualInfosChalet() {		
+		
+		//Arrange
+		IChalet chalet = new ChaletStub();
+		Forfait forfait = new Forfait(chalet, ANY_TRANSPORT, ANY_TRANSPORT, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_DAYS);
+		//Act
+		forfait.getInfosChalet();
+		
+		
+		
+		//Assert 
+		assertTrue(ChaletStub.MaximuStringCalled);
+		assertTrue(ChaletStub.PrixParNuitStringCalled);
+	}
+	
+	@Test 
+	public void WHEN_creatingForfait_THEN_callingGetInfoNbDeJoursReturnsTheActualInfoNbDeJours() {		
+		//Act
+		final String ACTUAL_INFOS_NB_DE_JOURS = anyForfait.getInfoNbDeJours();
+		final String EXPECTED_INFOS_NB_DE_JOURS = "Le nombre jours réservés est : "+Integer.toString(anyForfait.getNbDeJours());
+		
+		
+		//Assert 
+		assertEquals(EXPECTED_INFOS_NB_DE_JOURS,ACTUAL_INFOS_NB_DE_JOURS);
+	}
+	
+	@Test 
+	public void WHEN_creatingForfait_THEN_callingGetCoutTransportAllezEtRetour_RETURNS_theRightCost() {		
+		
+		//Arrange
+		final ITransport TRANSPORT = new TransportStub();
+		Forfait forfait = new Forfait(ANY_CHALET, TRANSPORT, TRANSPORT, ANY_NUMBER_OF_DAYS, ANY_NUMBER_OF_DAYS);
+		
+		//Act
+		final Float ACTUAL_COST = forfait.getCoutTransportAllezEtRetour();
+		final Float EXPECTED_COST = forfait.getNumberOfOccupants()*(2*(TRANSPORT.getPrixTransport()));
+		
+		
+		//Assert 
+		assertEquals(EXPECTED_COST,ACTUAL_COST,0.00);
+	}
+	
+	@Test 
+	public void WHEN_creatingForfait_THEN_callingGetCostReturnsZero() {		
+		
+		//Act
+		final float ACTUAL_COST = anyForfait.getCost();
+		final float EXPECTED_COST = 0f;
+		//Assert 
+		assertEquals(EXPECTED_COST,ACTUAL_COST,0.00);
 	}
 	
 	
