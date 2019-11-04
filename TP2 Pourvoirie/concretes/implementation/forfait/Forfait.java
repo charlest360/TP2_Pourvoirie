@@ -4,9 +4,9 @@ import implementation.chalet.IChalet;
 import implementation.transport.ITransport;
 import implementation.repas.RepasSouper;
 import implementation.forfait.IForfait;
-import implementation.chalet.NegativeNumberOfOccupantsException;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
-import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException;
+import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
+import implementation.chalet.ZeroOrUnderNumberOfOccupantsException;
 
 public class Forfait implements IForfait{
 	
@@ -16,34 +16,32 @@ public class Forfait implements IForfait{
 	private int nbOfOccupants;
 	private ITransport transportAllez;
 	private ITransport transportRetour;
-	private RepasSouper repas;
-	private static Float cost;
+	private RepasSouper repas= new RepasSouper();
+	private  Float cost =0f;
 	
 	
-	public Forfait(IChalet chalet,ITransport transportAllez,ITransport transportRetour,int nbDeJours,int nbOfOccupants,RepasSouper repas) {
+	public Forfait(IChalet chalet,ITransport transportAllez,ITransport transportRetour,int nbDeJours,int nbOfOccupants) {
 		setUpNbOfOccupants(nbOfOccupants);
 		setUpChalet(chalet,nbOfOccupants);
 		setUpNbDeJours(nbDeJours);
 		setUpTransportAllez(transportAllez);
 		setUpTransportRetour(transportRetour);
-		setUpRepas(repas);
+
+
 	}
-	
-	
 	
 	private void setUpNbOfOccupants(int nbOfOccupants) {
-		if (nbOfOccupants >= 0) {
-			this.nbOfOccupants = 0;
+		if (nbOfOccupants >0) {
+			this.nbOfOccupants = nbOfOccupants;
 		}
 		else {
-			throw new NegativeNumberOfOccupantsException();
+			throw new ZeroOrUnderNumberOfOccupantsException();
 		}
-		
 	}
-	
-	private void setUpRepas(RepasSouper repas) {
-		this.repas = repas;
+	public int getNumberOfOccupants() {
+		return this.nbOfOccupants;
 	}
+
 	
 	private void setUpTransportAllez(ITransport transport) {
 		this.transportAllez = transport;
@@ -60,11 +58,9 @@ public class Forfait implements IForfait{
 			this.chalet = chalet;
 		}
 		else {
-			throw new NumberOfOccupantsIsHigherThanMaximumNUmberOfOccupantsException();
+			throw new NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException();
 		}
 	}
-
-
 
 	private void setUpNbDeJours(int nbDeJours) {
 		if(nbDeJours > 0) {
@@ -75,48 +71,46 @@ public class Forfait implements IForfait{
 		}
 	}
 	
-	private float getPrixTotal() {
+	public float getPrixDeBase() {
 		return this.chalet.getPrixParNuit()*this.nbDeJours;
 	}
 	
-	public int getNbOfOccupants() {
-		return this.nbOfOccupants;
+	
+	public String getInfoNbOccupant() {
+		return "Le nombre d'occupants est : "+Integer.toString(this.nbOfOccupants);
 	}
 	
 	public int getNbDeJours() {
 		return this.nbDeJours;
 	}
 	
-	private String getNbOccupantString() {
-		return Integer.toString(nbOfOccupants);
-	}
-	
-	private String getInfoNbOccupant() {
-		return "Le nombre d'occupants est : "+this.getNbOfOccupants();
-	}
-	
-	private String getNbDeJoursString() {
-		return Integer.toString(nbDeJours);
-	}
-	
-	private String getInfoNbDeJours() {
-		return "Le nombre jours réservés est : "+this.getNbDeJours();
+	public String getInfoNbDeJours() {
+
+		return "Le nombre jours rÃ©servÃ©s est : "+Integer.toString(this.nbDeJours);
 	}
 	
 	public String getInfosChalet() {
 		return this.chalet.getMaximumOfOccupantsString() + this.chalet.getPrixParNuitString()  ;
 	}
 	
-	private float getCoutTransportAllezEtRetour() {
+	public float getCoutTransportAllezEtRetour() {
 		return this.nbOfOccupants*(this.transportAllez.getPrixTransport()+this.transportRetour.getPrixTransport());
 	}
+
+	public float getPrixSouperDeBase() {
+		return this.repas.getPrixSouper()*this.nbDeJours*this.nbOfOccupants;
+	}
 	
-	private float getPrixSouperTotale() {
-		return this.repas.getPrixSouper()*this.nbDeJours;
+	public void calculateCost() {
+		this.cost = getPrixSouperDeBase()+getCoutTransportAllezEtRetour()+getPrixDeBase();
+		
 	}
-	@Override
-	public Float calculateCost() {
-		return Forfait.cost;
+	
+	public float getCost() {
+		return this.cost;
 	}
+
+	
+
 }
 
