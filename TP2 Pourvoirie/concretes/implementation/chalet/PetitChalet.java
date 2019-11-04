@@ -18,15 +18,4 @@ public class PetitChalet extends Chalet {
 	}
 	
 
-
-	@Override
-	public String getInfosChalet() {
-		return Float.toString(PRIX_PAR_NUIT);
-	}
-	
-	public String getNbOccupant() {
-		return Integer.toString(MAXIMUM_OF_OCCUPANTS);
-	}
-
-
 }

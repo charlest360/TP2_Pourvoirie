@@ -1,26 +1,31 @@
 package implementation.chalet;
 
-public class ChaletStub implements IChalet {
+public class ChaletStub extends Chalet {
 
-	public final int MAX_NB_OF_OCCUPANTS = 10; 
+	public static final int MAX_NB_OF_OCCUPANTS = 10; 
 	public static final int PRIX_PAR_NUIT = 100;
+	public static boolean MaximuStringCalled = false;
+	public static boolean PrixParNuitStringCalled = false;
 	
-	@Override
 	public float getPrixParNuit() {
-		// TODO Auto-generated method stub
 		return PRIX_PAR_NUIT;
 	}
 
 	@Override
 	public int getMaximumOfOccupants() {
-		// TODO Auto-generated method stub
 		return MAX_NB_OF_OCCUPANTS;
 	}
-
+	
 	@Override
-	public String getInfosChalet() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getMaximumOfOccupantsString() {
+		this.MaximuStringCalled = true;
+		return Integer.toString(MAX_NB_OF_OCCUPANTS);
 	}
-
+	
+	@Override
+	public String getPrixParNuitString() {
+		this.PrixParNuitStringCalled = true;
+		return Float.toString(PRIX_PAR_NUIT);
+	}
+	
 }

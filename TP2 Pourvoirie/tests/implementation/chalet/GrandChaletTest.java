@@ -25,11 +25,5 @@ private Chalet ANY_GRAND_CHALET ;
 		assertEquals(GrandChalet.MAXIMUM_OF_OCCUPANTS,ANY_GRAND_CHALET.getMaximumOfOccupants());
 	}
 	
-	@Test 
-	public void WHEN_callingGetInfosChaletOnGrandChalet_THEN_itReturnsTheRightPrixParNuitToString() {		
-		//Assert 
-		final String EXPECTED_PRIX_PAR_NUIT = Float.toString(GrandChalet.PRIX_PAR_NUIT);
-		
-		assertEquals(EXPECTED_PRIX_PAR_NUIT,ANY_GRAND_CHALET.getInfosChalet());
-	}
+	
 }

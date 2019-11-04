@@ -1,13 +1,12 @@
 package implementation.forfait;
 
-
 import implementation.chalet.IChalet;
 import implementation.transport.ITransport;
 import implementation.repas.RepasSouper;
 import implementation.forfait.IForfait;
-import implementation.chalet.NegativeNumberOfOccupantsException;
 import implementation.chalet.NumberOfDaysReservedMustBePositiveException;
 import implementation.chalet.NumberOfOccupantsIsHigherThanMaximumNumberOfOccupantsException;
+import implementation.chalet.ZeroOrUnderNumberOfOccupantsException;
 
 public class Forfait implements IForfait{
 	
@@ -17,21 +16,19 @@ public class Forfait implements IForfait{
 	private int nbOfOccupants;
 	private ITransport transportAllez;
 	private ITransport transportRetour;
-	private RepasSouper repas;
-	private static Float cost;
+	private RepasSouper repas= new RepasSouper();
+	private  Float cost =0f;
 	
 	
-	public Forfait(IChalet chalet,ITransport transportAllez,ITransport transportRetour,int nbDeJours,int nbOfOccupants,RepasSouper repas) {
+	public Forfait(IChalet chalet,ITransport transportAllez,ITransport transportRetour,int nbDeJours,int nbOfOccupants) {
 		setUpNbOfOccupants(nbOfOccupants);
 		setUpChalet(chalet,nbOfOccupants);
 		setUpNbDeJours(nbDeJours);
 		setUpTransportAllez(transportAllez);
 		setUpTransportRetour(transportRetour);
-		setUpRepas(repas);
+
 
 	}
-	
-	
 	
 	private void setUpNbOfOccupants(int nbOfOccupants) {
 		if (nbOfOccupants >0) {
@@ -45,10 +42,6 @@ public class Forfait implements IForfait{
 		return this.nbOfOccupants;
 	}
 
-	
-	private void setUpRepas(RepasSouper repas) {
-		this.repas = repas;
-	}
 	
 	private void setUpTransportAllez(ITransport transport) {
 		this.transportAllez = transport;
@@ -69,8 +62,6 @@ public class Forfait implements IForfait{
 		}
 	}
 
-
-
 	private void setUpNbDeJours(int nbDeJours) {
 		if(nbDeJours > 0) {
 			this.nbDeJours = nbDeJours;
@@ -80,45 +71,47 @@ public class Forfait implements IForfait{
 		}
 	}
 	
-
-	private float getPrixTotal() {
+	public float getPrixDeBase() {
 		return this.chalet.getPrixParNuit()*this.nbDeJours;
 	}
 	
-	private String getNbOccupant() {
-
-		return Integer.toString(nbOfOccupants);
+	
+	
+	public String getInfoNbOccupant() {
+		return "Le nombre d'occupants est : "+Integer.toString(this.nbOfOccupants);
 	}
 	
-	private String getInfoNbOccupant() {
-		return "Le nombre d'occupants est : "+this.getNbOccupant();
+	public int getNbDeJours() {
+		return this.nbDeJours;
 	}
 	
+	public String getInfoNbDeJours() {
 
-	private String getNbDeJours() {
-		return Integer.toString(nbDeJours);
-	}
-	
-	private String getInfoNbDeJours() {
-
-		return "Le nombre jours réservés est : "+this.getNbDeJours();
+		return "Le nombre jours réservés est : "+Integer.toString(this.nbDeJours);
 	}
 	
 	public String getInfosChalet() {
 		return this.chalet.getMaximumOfOccupantsString() + this.chalet.getPrixParNuitString()  ;
 	}
 	
-	private float getCoutTransportAllezEtRetour() {
+	public float getCoutTransportAllezEtRetour() {
 		return this.nbOfOccupants*(this.transportAllez.getPrixTransport()+this.transportRetour.getPrixTransport());
 	}
 
-	private float getPrixSouperTotale() {
-		return this.repas.getPrixSouper()*this.nbDeJours;
+	public float getPrixSouperDeBase() {
+		return this.repas.getPrixSouper()*this.nbDeJours*this.nbOfOccupants;
 	}
-	@Override
-	public Float calculateCost() {
-		return Forfait.cost;
+	
+	public void calculateCost() {
+		this.cost = getPrixSouperDeBase()+getCoutTransportAllezEtRetour()+getPrixDeBase();
+		
 	}
+	
+	public float getCost() {
+		return this.cost;
+	}
+
+	
 
 }
 
