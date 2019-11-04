@@ -79,15 +79,23 @@ public class Forfait implements IForfait{
 		return this.chalet.getPrixParNuit()*this.nbDeJours;
 	}
 	
-	private String getNbOccupant() {
+	public int getNbOfOccupants() {
+		return this.nbOfOccupants;
+	}
+	
+	public int getNbDeJours() {
+		return this.nbDeJours;
+	}
+	
+	private String getNbOccupantString() {
 		return Integer.toString(nbOfOccupants);
 	}
 	
 	private String getInfoNbOccupant() {
-		return "Le nombre d'occupants est : "+this.getNbOccupant();
+		return "Le nombre d'occupants est : "+this.getNbOfOccupants();
 	}
 	
-	private String getNbDeJours() {
+	private String getNbDeJoursString() {
 		return Integer.toString(nbDeJours);
 	}
 	
