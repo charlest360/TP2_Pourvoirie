@@ -76,7 +76,6 @@ public class Forfait implements IForfait{
 	}
 	
 	
-	
 	public String getInfoNbOccupant() {
 		return "Le nombre d'occupants est : "+Integer.toString(this.nbOfOccupants);
 	}
