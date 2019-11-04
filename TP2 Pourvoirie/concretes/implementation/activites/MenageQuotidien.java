@@ -23,6 +23,6 @@ public class MenageQuotidien extends ForfaitOption{
 	
 	@Override
 	public Float calculateCost() {
-		return super.getForfait().calculateCost() + MenageQuotidien.getCost();
+		return super.getForfait().calculateCost() + (MenageQuotidien.getCost() * this.getNbDeJours());
 	}
 }

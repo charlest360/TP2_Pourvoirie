@@ -22,7 +22,7 @@ public class RepasGastronomique extends ForfaitOption{
 	
 	@Override
 	public Float calculateCost() {
-		return super.getForfait().calculateCost() + RepasGastronomique.getCost();
+		return super.getForfait().calculateCost() + (RepasGastronomique.getCost() * this.getNbDeJours() * this.getNbOfOccupants());
 	}
 	
 }

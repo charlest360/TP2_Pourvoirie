@@ -5,7 +5,7 @@ import implementation.forfait.ForfaitOption;
 
 public class RepasDéjeunerDiner extends ForfaitOption {
 	
-	public static final float COST = 22f;
+	public static final float COST = 10f;
 	private static Float cost = COST;
 
 	public RepasDéjeunerDiner(Forfait forfait) {
@@ -22,6 +22,6 @@ public class RepasDéjeunerDiner extends ForfaitOption {
 	
 	@Override
 	public Float calculateCost() {
-		return super.getForfait().calculateCost() + RepasDéjeunerDiner.getCost();
+		return super.getForfait().calculateCost() + (RepasDéjeunerDiner.getCost() * this.getNbDeJours() * this.getNbOfOccupants());
 	}
 }

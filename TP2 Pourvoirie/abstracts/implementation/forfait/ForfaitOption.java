@@ -15,6 +15,10 @@ public abstract class ForfaitOption implements IForfait {
 		return this.forfait.getNbOfOccupants();
 	}
 	
+	public int getNbDeJours() {
+		return this.forfait.getNbDeJours();
+	}
+	
 	@Override
 	public abstract Float calculateCost();
 	

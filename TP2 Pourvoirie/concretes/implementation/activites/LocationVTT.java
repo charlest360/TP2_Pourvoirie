@@ -22,6 +22,6 @@ public class LocationVTT extends ForfaitOption{
 	
 	@Override
 	public Float calculateCost() {
-		return super.getForfait().calculateCost() + LocationVTT.getCost();
+		return super.getForfait().calculateCost() + (LocationVTT.getCost() * this.getNbDeJours());
 	}
 }
