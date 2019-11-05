@@ -2,6 +2,7 @@ package implementation.activites;
 
 import implementation.forfait.Forfait;
 import implementation.forfait.ForfaitOption;
+import implementation.forfait.IForfait;
 
 
 public class MenageQuotidien extends ForfaitOption{
@@ -9,7 +10,7 @@ public class MenageQuotidien extends ForfaitOption{
 	public static final float COST = 22f;
 	private static Float cost = COST;
 
-	public MenageQuotidien(Forfait forfait) {
+	public MenageQuotidien(IForfait forfait, int nbDeJours) {
 		super(forfait);
 	}
 	
