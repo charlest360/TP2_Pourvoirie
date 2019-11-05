@@ -2,13 +2,13 @@ package implementation.forfait;
 
 public abstract class ForfaitOption implements IForfait {
 	
-	private Forfait forfait;
+	private IForfait forfait;
 
-	public ForfaitOption(Forfait forfait) {
+	public ForfaitOption(IForfait forfait) {
 		this.forfait = forfait;
 	}
 	
-	public Forfait getForfait() {
+	public IForfait getForfait() {
 		return this.forfait;
 	}
 	public int getNbOfOccupants() {

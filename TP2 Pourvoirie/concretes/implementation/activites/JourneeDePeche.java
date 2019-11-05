@@ -2,13 +2,14 @@ package implementation.activites;
 
 import implementation.forfait.Forfait;
 import implementation.forfait.ForfaitOption;
+import implementation.forfait.IForfait;
 
 public class JourneeDePeche extends ForfaitOption{
 	
 	public static final float COST = 200f;
 	private static Float cost = COST;
 
-	public JourneeDePeche(Forfait forfait) {
+	public JourneeDePeche(IForfait forfait, int nbDeParticipants) {
 		super(forfait);
 	}
 	

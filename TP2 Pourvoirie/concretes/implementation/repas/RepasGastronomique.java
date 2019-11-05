@@ -2,13 +2,14 @@ package implementation.repas;
 
 import implementation.forfait.Forfait;
 import implementation.forfait.ForfaitOption;
+import implementation.forfait.IForfait;
 
 public class RepasGastronomique extends ForfaitOption{
 	
 	public static final float COST = 22f;
 	private static Float cost = COST;
 
-	public RepasGastronomique(Forfait forfait) {
+	public RepasGastronomique(IForfait forfait, int nbSouperGastronomique) {
 		super(forfait);
 	}
 	

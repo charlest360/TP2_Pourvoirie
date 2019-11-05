@@ -2,13 +2,14 @@ package implementation.activites;
 
 import implementation.forfait.Forfait;
 import implementation.forfait.ForfaitOption;
+import implementation.forfait.IForfait;
 
 public class LocationVTT extends ForfaitOption{
 	
 	public static final float COST = 30f;
 	private static Float cost = COST;
 
-	public LocationVTT(Forfait forfait) {
+	public LocationVTT(IForfait forfait, int nbDeVTT) {
 		super(forfait);
 	}
 	
